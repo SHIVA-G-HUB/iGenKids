@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - iGenKids</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/products.css">
+</head>
+<body>
+    <img class="image-gradient" src="gradient.png" alt="gradient">
+    <div class="layer-blur"></div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="logo.svg" alt="iGenKids" class="logo-image">
+            </div>
+
+            <nav>
+                <a href="index.html">HOME</a>
+                <a href="index.html#features">FEATURES</a>
+                <a href="products.html" class="active">PRODUCTS</a>
+                <a href="index.html#contact">CONTACT</a>
+            </nav>
+            <div class="header-actions">
+                <div class="cart-icon" onclick="toggleCart()">
+                    <span>Cart</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                <button class="btn-signing" onclick="window.location.href='checkout.html'">CHECKOUT</button>
+            </div>
+        </header>
+
+        <main class="products-main">
+            <div class="products-content">
+                <div class="products-header">
+                    <div class="tag-box">
+                        <div class="tag">DIGITAL PRODUCTS</div>
+                    </div>
+                    <h1>AMAZING PRODUCTS<br>FOR KIDS</h1>
+                    <p class="description">
+                        Discover our collection of innovative digital products designed to inspire creativity and learning in children.
+                    </p>
+                </div>
+
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be loaded here by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="products-sidebar">
+                <h3 style="color: #e7e7e7; margin-bottom: 1.5rem; font-size: 1.3rem;">Why Choose iGenKids?</h3>
+                
+                <div style="margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 40px; height: 40px; background: linear-gradient(45deg, #5300a0, #7f42a7); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                            <span style="color: white; font-size: 1.2rem;">•</span>
+                        </div>
+                        <div>
+                            <h4 style="color: #e7e7e7; margin: 0; font-size: 1rem;">Educational Focus</h4>
+                            <p style="color: #a7a7a7; margin: 0; font-size: 0.8rem;">Learning through play</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 40px; height: 40px; background: linear-gradient(45deg, #5300a0, #7f42a7); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                            <span style="color: white; font-size: 1.2rem;">•</span>
+                        </div>
+                        <div>
+                            <h4 style="color: #e7e7e7; margin: 0; font-size: 1rem;">Safe & Secure</h4>
+                            <p style="color: #a7a7a7; margin: 0; font-size: 0.8rem;">Child-friendly content</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 40px; height: 40px; background: linear-gradient(45deg, #5300a0, #7f42a7); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                            <span style="color: white; font-size: 1.2rem;">•</span>
+                        </div>
+                        <div>
+                            <h4 style="color: #e7e7e7; margin: 0; font-size: 1rem;">Instant Access</h4>
+                            <p style="color: #a7a7a7; margin: 0; font-size: 0.8rem;">Download immediately</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(45deg, rgba(83, 0, 160, 0.1), rgba(127, 66, 167, 0.1)); border-radius: 15px; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid rgba(83, 0, 160, 0.2);">
+                    <h4 style="color: #e7e7e7; margin: 0 0 1rem 0; font-size: 1.1rem;">Special Offer</h4>
+                    <p style="color: #a7a7a7; margin: 0 0 1rem 0; font-size: 0.9rem;">Get 20% off on your first purchase!</p>
+                    <div style="background: linear-gradient(45deg, #5300a0, #7f42a7); color: white; padding: 0.5rem 1rem; border-radius: 25px; text-align: center; font-weight: 600; font-size: 0.9rem;">
+                        Use code: KIDS20
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <h4 style="color: #e7e7e7; margin: 0 0 1rem 0; font-size: 1rem;">Need Help?</h4>
+                    <p style="color: #a7a7a7; margin: 0 0 1rem 0; font-size: 0.8rem;">Contact our support team</p>
+                    <button style="background: linear-gradient(45deg, #5300a0, #7f42a7); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        Contact Support
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <spline-viewer class="robot-3d products-robot" url="https://prod.spline.design/2XWLq1qNx1EB3aBP/scene.splinecode"></spline-viewer>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: $<span id="cartTotal">0.00</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.74/build/spline-viewer.js"></script>
+    <script src="js/performance.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/backend.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/3d-effects.js"></script>
+</body>
+</html>

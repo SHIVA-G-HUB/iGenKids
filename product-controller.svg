@@ -1,0 +1,44 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+    <linearGradient id="controllerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#5300a0;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#7f42a7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="buttonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#9d5bb8;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#b86fc5;stop-opacity:1" />
+    </linearGradient>
+</defs>
+<!-- Controller Body -->
+<path d="M50 80 Q50 60 70 60 L130 60 Q150 60 150 80 L150 120 Q150 140 130 140 L70 140 Q50 140 50 120 Z" fill="url(#controllerGrad)" stroke="#9d5bb8" stroke-width="2"/>
+<!-- Left Grip -->
+<path d="M50 100 Q30 100 30 120 L30 140 Q30 160 50 160 Q60 160 60 150 L60 130 Q60 120 50 120 Z" fill="url(#controllerGrad)" stroke="#9d5bb8" stroke-width="2"/>
+<!-- Right Grip -->
+<path d="M150 100 Q170 100 170 120 L170 140 Q170 160 150 160 Q140 160 140 150 L140 130 Q140 120 150 120 Z" fill="url(#controllerGrad)" stroke="#9d5bb8" stroke-width="2"/>
+<!-- D-Pad -->
+<g transform="translate(70, 85)">
+    <rect x="8" y="0" width="4" height="20" rx="2" fill="url(#buttonGrad)"/>
+    <rect x="0" y="8" width="20" height="4" rx="2" fill="url(#buttonGrad)"/>
+</g>
+<!-- Action Buttons -->
+<circle cx="130" cy="85" r="6" fill="url(#buttonGrad)" stroke="#ffffff" stroke-width="1"/>
+<circle cx="145" cy="95" r="6" fill="url(#buttonGrad)" stroke="#ffffff" stroke-width="1"/>
+<circle cx="115" cy="95" r="6" fill="url(#buttonGrad)" stroke="#ffffff" stroke-width="1"/>
+<circle cx="130" cy="105" r="6" fill="url(#buttonGrad)" stroke="#ffffff" stroke-width="1"/>
+<!-- Button Labels -->
+<text x="130" y="88" text-anchor="middle" fill="white" font-size="8" font-family="Arial">A</text>
+<text x="145" y="98" text-anchor="middle" fill="white" font-size="8" font-family="Arial">B</text>
+<text x="115" y="98" text-anchor="middle" fill="white" font-size="8" font-family="Arial">X</text>
+<text x="130" y="108" text-anchor="middle" fill="white" font-size="8" font-family="Arial">Y</text>
+<!-- Analog Sticks -->
+<circle cx="45" cy="135" r="8" fill="#2a2a2a" stroke="#5300a0" stroke-width="2"/>
+<circle cx="155" cy="135" r="8" fill="#2a2a2a" stroke="#5300a0" stroke-width="2"/>
+<circle cx="45" cy="135" r="4" fill="#5300a0"/>
+<circle cx="155" cy="135" r="4" fill="#5300a0"/>
+<!-- Center Logo -->
+<circle cx="100" cy="100" r="12" fill="#2a2a2a" opacity="0.7"/>
+<text x="100" y="105" text-anchor="middle" fill="#00ff88" font-size="10" font-family="Arial">iGK</text>
+<!-- Shoulder Buttons -->
+<rect x="60" y="55" width="15" height="8" rx="4" fill="url(#buttonGrad)"/>
+<rect x="125" y="55" width="15" height="8" rx="4" fill="url(#buttonGrad)"/>
+</svg>

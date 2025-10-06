@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Manager - iGenKids</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/product-manager.css">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.74/build/spline-viewer.js"></script>
+</head>
+<body>
+    <header class="admin-header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="logo.svg" alt="iGenKids" class="logo-image">
+            </div>
+            <nav>
+                <a href="index.html">HOME</a>
+                <a href="admin.html">ADMIN</a>
+                <a href="product-manager.html" class="active">PRODUCTS</a>
+                <a href="#" onclick="logout()" class="logout-btn">LOGOUT</a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-signing" onclick="window.location.href='admin.html'">BACK TO ADMIN</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="product-manager-main">
+        <div class="manager-container">
+            <div class="manager-header">
+                <h1>Digital Product Manager</h1>
+                <p>Upload and manage your 3D digital products with advanced photo galleries</p>
+                <button class="btn-primary" onclick="openAddProductModal()">+ Add New Product</button>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+
+        <!-- 3D Robot Animation -->
+        <div class="robot-container">
+            <spline-viewer 
+                class="robot-3d-manager" 
+                url="https://prod.spline.design/2XWLq1qNx1EB3aBP/scene.splinecode">
+            </spline-viewer>
+        </div>
+    </main>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal">
+        <div class="modal-content product-modal">
+            <div class="modal-header">
+                <h2>Add New Digital Product</h2>
+                <span class="close" onclick="closeAddProductModal()">&times;</span>
+            </div>
+            <form id="productForm" class="product-form">
+                <div class="form-section">
+                    <h3>Basic Information</h3>
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" id="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">Price ($)</label>
+                        <input type="number" id="productPrice" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productCategory">Category</label>
+                        <select id="productCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="3D Models">3D Models</option>
+                            <option value="Digital Art">Digital Art</option>
+                            <option value="Templates">Templates</option>
+                            <option value="Software">Software</option>
+                            <option value="Games">Games</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Description</label>
+                        <textarea id="productDescription" rows="4" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Product Images</h3>
+                    <div class="photo-upload-area">
+                        <div class="upload-zone" onclick="triggerFileInput()">
+                            <div class="upload-icon">📷</div>
+                            <p>Click to upload product images</p>
+                            <p class="upload-hint">Supports JPG, PNG, WebP (Max 5MB each)</p>
+                        </div>
+                        <input type="file" id="photoInput" multiple accept="image/*" style="display: none;">
+                    </div>
+                    <div class="photo-preview" id="photoPreview">
+                        <!-- Uploaded photos will appear here -->
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>3D Model (Optional)</h3>
+                    <div class="form-group">
+                        <label for="splineUrl">Spline 3D Model URL</label>
+                        <input type="url" id="splineUrl" placeholder="https://prod.spline.design/...">
+                        <small>Add a Spline 3D model URL for interactive preview</small>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Digital Files</h3>
+                    <div class="file-upload-area">
+                        <div class="upload-zone" onclick="triggerDigitalFileInput()">
+                            <div class="upload-icon">📁</div>
+                            <p>Upload digital product files</p>
+                            <p class="upload-hint">ZIP, PDF, AI, PSD, etc. (Max 100MB each)</p>
+                        </div>
+                        <input type="file" id="digitalFileInput" multiple style="display: none;">
+                    </div>
+                    <div class="file-preview" id="filePreview">
+                        <!-- Uploaded files will appear here -->
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" onclick="closeAddProductModal()" class="btn-secondary">Cancel</button>
+                    <button type="submit" class="btn-primary">Create Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/cart.js"></script>
+    <script src="js/backend.js"></script>
+    <script src="js/admin-login.js"></script>
+    <script src="js/product-manager.js"></script>
+    <script src="js/3d-effects.js"></script>
+    <script>
+        // Check authentication
+        if (!AdminAuth.isAuthenticated()) {
+            window.location.href = 'admin-login.html';
+        }
+        
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                AdminAuth.logout();
+            }
+        }
+    </script>
+</body>
+</html>

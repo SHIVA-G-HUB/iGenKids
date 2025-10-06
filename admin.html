@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Digital Products Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
+</head>
+<body>
+    <header class="admin-header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="logo.svg" alt="iGenKids Admin" class="logo-image">
+            </div>
+            <nav>
+                <a href="index.html">HOME</a>
+                <a href="products.html">PRODUCTS</a>
+                <a href="product-manager.html">MANAGE PRODUCTS</a>
+                <a href="#" onclick="logout()" class="logout-btn">LOGOUT</a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-signing" onclick="window.location.href='index.html'">BACK TO SITE</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h1>Admin Dashboard</h1>
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <h3 id="totalOrders">0</h3>
+                        <p>Total Orders</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="totalRevenue">$0</h3>
+                        <p>Total Revenue</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="totalCustomers">0</h3>
+                        <p>Total Customers</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="totalProducts">0</h3>
+                        <p>Total Products</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="tab-btn active" onclick="switchTab('orders')">Orders</button>
+                <button class="tab-btn" onclick="switchTab('customers')">Customers</button>
+                <button class="tab-btn" onclick="switchTab('products')">Products</button>
+                <button class="tab-btn" onclick="switchTab('analytics')">Analytics</button>
+            </div>
+
+            <div class="admin-content">
+                <!-- Orders Tab -->
+                <div id="ordersTab" class="tab-content active">
+                    <div class="content-header">
+                        <h2>Order Management</h2>
+                        <div class="filters">
+                            <select id="orderStatusFilter">
+                                <option value="">All Status</option>
+                                <option value="completed">Completed</option>
+                                <option value="pending">Pending</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                            <input type="date" id="orderDateFilter" placeholder="Filter by date">
+                            <button onclick="exportOrders()" class="btn-export">Export CSV</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTableBody">
+                                <!-- Orders will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Customers Tab -->
+                <div id="customersTab" class="tab-content">
+                    <div class="content-header">
+                        <h2>Customer Management</h2>
+                        <div class="filters">
+                            <input type="text" id="customerSearchFilter" placeholder="Search customers...">
+                            <button onclick="exportCustomers()" class="btn-export">Export CSV</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Customer ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Orders</th>
+                                    <th>Total Spent</th>
+                                    <th>Last Order</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customersTableBody">
+                                <!-- Customers will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Products Tab -->
+                <div id="productsTab" class="tab-content">
+                    <div class="content-header">
+                        <h2>Product Management</h2>
+                        <div class="filters">
+                            <button onclick="showAddProductModal()" class="btn-add-product">Add New Product</button>
+                            <button onclick="exportProducts()" class="btn-export">Export CSV</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Sales</th>
+                                    <th>Revenue</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsTableBody">
+                                <!-- Products will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Analytics Tab -->
+                <div id="analyticsTab" class="tab-content">
+                    <div class="content-header">
+                        <h2>Analytics Dashboard</h2>
+                    </div>
+                    <div class="analytics-grid">
+                        <div class="chart-container">
+                            <h3>Sales Over Time</h3>
+                            <canvas id="salesChart" width="400" height="200"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Top Products</h3>
+                            <div id="topProductsList" class="top-products-list">
+                                <!-- Top products will be populated here -->
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Revenue by Category</h3>
+                            <canvas id="categoryChart" width="400" height="200"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Customer Growth</h3>
+                            <canvas id="customerChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3D Robot in corner -->
+        <div class="admin-robot">
+            <spline-viewer url="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"></spline-viewer>
+        </div>
+    </main>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Product</h3>
+                <span class="close" onclick="closeAddProductModal()">&times;</span>
+            </div>
+            <form id="addProductForm">
+                <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label for="productDescription">Description</label>
+                    <textarea id="productDescription" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Price ($)</label>
+                    <input type="number" id="productPrice" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="productCategory">Category</label>
+                    <select id="productCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="Educational Games">Educational Games</option>
+                        <option value="Creative Tools">Creative Tools</option>
+                        <option value="Learning Apps">Learning Apps</option>
+                        <option value="Entertainment">Entertainment</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="productImage">Image URL</label>
+                    <input type="url" id="productImage" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" onclick="closeAddProductModal()" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-save">Add Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div id="orderDetailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Order Details</h3>
+                <span class="close" onclick="closeOrderDetailsModal()">&times;</span>
+            </div>
+            <div id="orderDetailsContent">
+                <!-- Order details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be populated here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: $<span id="cartTotal">0.00</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="goToCheckout()">Checkout</button>
+        </div>
+    </div>
+    <div id="cartOverlay" class="cart-overlay" onclick="toggleCart()"></div>
+
+    <script src="js/cart.js"></script>
+    <script src="js/backend.js"></script>
+    <script src="js/admin-login.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/3d-effects.js"></script>
+    <script>
+        // Check authentication before loading admin panel
+        if (!AdminAuth.isAuthenticated()) {
+            window.location.href = 'admin-login.html';
+        }
+        
+        // Add logout functionality
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                AdminAuth.logout();
+            }
+        }
+    </script>
+</body>
+</html>

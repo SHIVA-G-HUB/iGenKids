@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iGenKids</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img class="image-gradient" src="gradient.png" alt="gradient">
+    <div class="layer-blur"></div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="logo.svg" alt="iGenKids" class="logo-image">
+            </div>
+
+            <nav class="nav-links">
+                <a href="index.html">HOME</a>
+                <a href="#features">FEATURES</a>
+                <a href="products.html">PRODUCTS</a>
+                <a href="#contact">CONTACT</a>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="cart-icon" onclick="toggleCart()">
+                    <span>Cart</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                <button class="btn-download" onclick="window.location.href='products.html'">
+                    <span class="download-icon">↓</span>
+                    DOWNLOAD
+                </button>
+            </div>
+        </header>
+        <main>
+        <div class="content">
+            <div class="tag-box">
+                <div class="tag">INTRODUCING &wedbar;</div>
+            </div>
+
+            <h1>PRODUCTS FOR<br>KIDS</h1>
+            <p class="description">
+                iGENKIDS is a next-generation digital learning and entertainment platform designed especially for curious young minds. Our products combine education, creativity, and fun to help kids learn smarter, play better, and grow confidently in the digital age.
+            </p>
+            
+            <div class="buttons">
+                <a href="products.html" class="btn-get-started">View Products &gt;</a>
+                <a href="products.html" class="btn-signing-main">Shop Now &gt;</a>
+            </div>
+        </div>
+        </main>
+        <spline-viewer class="robot-3d" url="https://prod.spline.design/2XWLq1qNx1EB3aBP/scene.splinecode"></spline-viewer>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: $<span id="cartTotal">0.00</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>iGenKids</h3>
+                <p>Empowering the next generation with cutting-edge digital products and 3D experiences.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📘</a>
+                    <a href="#" class="social-link">📷</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">💼</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <div class="contact-info">
+                    <p>Email: support@igenkids.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <p>Address: 123 Innovation St, Tech City</p>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://facebook.com/igenkids" target="_blank" class="social-icon facebook" aria-label="Follow us on Facebook">
+                        <img src="facebook-icon.svg" alt="Facebook" />
+                    </a>
+                    <a href="https://instagram.com/igenkids" target="_blank" class="social-icon instagram" aria-label="Follow us on Instagram">
+                        <img src="instagram-icon.svg" alt="Instagram" />
+                    </a>
+                    <a href="https://wa.me/15551234567" target="_blank" class="social-icon whatsapp" aria-label="Contact us on WhatsApp">
+                        <img src="whatsapp-icon.svg" alt="WhatsApp" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 iGenKids. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#" onclick="adminAccess()" class="admin-access">Admin</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.74/build/spline-viewer.js"></script>
+    <script src="js/performance.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/3d-effects.js"></script>
+    <script>
+        function adminAccess() {
+            const password = prompt('Enter admin access code:');
+            if (password === 'admin2024') {
+                window.location.href = 'admin-login.html';
+            } else if (password !== null) {
+                alert('Invalid access code');
+            }
+        }
+    </script>
+</body>
+</html>
